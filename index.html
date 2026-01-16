@@ -243,23 +243,32 @@ th, td {
 
 <!-- 本戻し -->
 <section id="return">
-  <h2>本戻し（検索）</h2>
+  <h2>検索</h2>
 
-  <input placeholder="ISBN または 書名を入力" />
+  <input id="returnQuery" placeholder="ISBN または 書名を入力" />
 
-  <div class="label">検索結果（例）</div>
-  <div class="card">
-    <h3>サンプル書籍A</h3>
-    <p><strong>ISBN：</strong>9780001</p>
-    <p><strong>著者：</strong>著者A</p>
-    <p><strong>出版社：</strong>出版社A</p>
-    <p><strong>棚：</strong>棚A</p>
-    <p><strong>POP：</strong>あり</p>
-    <p><strong>状態：</strong>在庫</p>
+  <!-- 追加：カメラ（画像からISBN/書名を読み取り想定） -->
+  <input id="returnCamera" type="file" accept="image/*" capture />
+
+  <!-- 追加：検索ボタン（登録と同じように） -->
+  <button onclick="doReturnSearch()">検索</button>
+
+  <div class="label" id="returnResultLabel" style="display:none;">検索結果</div>
+
+  <!-- 例の結果：検索時に表示する -->
+  <div class="card" id="returnResultCard" style="display:none;">
+    <h3 id="rTitle">サンプル書籍A</h3>
+    <p><strong>ISBN：</strong><span id="rIsbn">9780001</span></p>
+    <p><strong>著者：</strong><span id="rAuthor">著者A</span></p>
+    <p><strong>出版社：</strong><span id="rPublisher">出版社A</span></p>
+    <p><strong>棚：</strong><span id="rShelf">棚A</span></p>
+    <p><strong>POP：</strong><span id="rPop">あり</span></p>
+    <p><strong>状態：</strong><span id="rStatus">在庫</span></p>
   </div>
 
   <button onclick="show('home')">戻る</button>
 </section>
+
 </div>
 
 <footer class="footer">
@@ -290,6 +299,7 @@ activate(initialPage);
 
 </body>
 </html>
+
 
 
 
