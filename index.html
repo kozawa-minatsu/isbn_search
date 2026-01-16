@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>蔵書管理システム UI モック</title>
+<style>
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+header {
+  background: #222;
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+}
+section {
+  padding: 16px;
+  display: none;
+}
+section.active {
+  display: block;
+}
+h2 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.card {
+  background: #fff;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.card p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+.label {
+  font-size: 12px;
+  color: #666;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  flex: 1;
+}
+
+.footer {
+  padding: 12px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #ddd;
+}
+
+</style>
+</head>
+
+<body>
+ <div class="app">
+<header>蔵書管理システム</header>
+
+<!-- トップ -->
+<section id="home" class="active">
+  <h2>操作を選択</h2>
+  <button onclick="show('single')">1冊登録</button>
+  <button onclick="show('bulk')">棚単位登録</button>
+  <button onclick="show('list')">蔵書一覧</button>
+  <button onclick="show('return')">本戻し（検索）</button>
+</section>
+
+<!-- 1冊登録 -->
+<section id="single">
+  <h2>1冊登録</h2>
+  <input placeholder="ISBNを入力" />
+  <input type="file" accept="image/*" capture />
+  <select>
+    <option>棚A</option>
+    <option>棚B</option>
+    <option>未定棚</option>
+  </select>
+   <div class="field">
+    <label>POP</label>
+    <select>
+      <option>なし</option>
+      <option>あり</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>状態</label>
+    <select>
+      <option>在庫</option>
+      <option>廃棄</option>
+    </select>
+  </div>
+  <button>登録</button>
+  <button onclick="show('home')">戻る</button>
+</section>
+
+<!-- 棚単位登録 -->
+<section id="bulk">
+  <h2>棚単位登録</h2>
+
+  <select>
+    <option>棚A（固定）</option>
+    <option>棚B</option>
+  </select>
+
+  <input placeholder="ISBNを読み取り" />
+  <input type="file" accept="image/*" capture />
+   <div class="field">
+    <label>POP</label>
+    <select>
+      <option>なし</option>
+      <option>あり</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>状態</label>
+    <select>
+      <option>在庫</option>
+      <option>廃棄</option>
+    </select>
+  </div>
+  <div class="label">直近の登録結果</div>
+  <div class="card">
+    <p>9780000000001：登録成功</p>
+    <p>9780000000002：ISBN不正</p>
+  </div>
+
+  <button>続けて登録</button>
+  <button onclick="show('home')">終了（戻る）</button>
+</section>
+
+
+<!-- 蔵書一覧 -->
+<section id="list">
+  <h2>蔵書一覧</h2>
+
+  <label>棚を選択</label>
+  <select>
+    <option>棚A</option>
+    <option>棚B</option>
+    <option>未定棚</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ISBN</th>
+        <th>書名</th>
+        <th>著者</th>
+        <th>出版社</th>
+        <th>POP</th>
+        <th>状態</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>9780000000001</td>
+        <td>ダミー書籍A</td>
+        <td>著者A</td>
+        <td>出版社A</td>
+        <td>あり</td>
+        <td>在庫</td>
+      </tr>
+      <tr>
+        <td>9780000000002</td>
+        <td>ダミー書籍B</td>
+        <td>著者B</td>
+        <td>出版社B</td>
+        <td>なし</td>
+        <td>在庫</td>
+      </tr>
+      <tr>
+        <td>9780000000003</td>
+        <td>ダミー書籍C</td>
+        <td>著者C</td>
+        <td>出版社C</td>
+        <td>あり</td>
+        <td>廃棄</td>
+      </tr>
+      <tr>
+        <td>9780000000004</td>
+        <td>ダミー書籍D</td>
+        <td>著者D</td>
+        <td>出版社D</td>
+        <td>なし</td>
+        <td>在庫</td>
+      </tr>
+      <tr>
+        <td>9780000000005</td>
+        <td>ダミー書籍E</td>
+        <td>著者E</td>
+        <td>出版社E</td>
+        <td>あり</td>
+        <td>在庫</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button onclick="show('home')">戻る</button>
+</section>
+
+
+<!-- 本戻し（検索） -->
+<section id="return">
+  <h2>本戻し（検索）</h2>
+
+  <input placeholder="ISBN または 書名を入力" />
+
+  <div class="label">検索結果（例）</div>
+
+  <div class="card">
+    <h3>サンプル書籍A</h3>
+    <p><strong>ISBN：</strong>9780001</p>
+    <p><strong>著者：</strong>著者A</p>
+    <p><strong>出版社：</strong>出版社A</p>
+    <p><strong>棚：</strong>棚A</p>
+    <p><strong>POP：</strong>あり</p>
+    <p><strong>状態：</strong>在庫</p>
+  </div>
+
+  <button onclick="show('home')">戻る</button>
+</section>
+
+<script>
+function show(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+ </div>
+  <footer class="footer">
+    © BOOK HOTEL 神保町
+  </footer>
+</body>
+</html>
