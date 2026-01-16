@@ -8,203 +8,87 @@
 <title>蔵書管理システム UI モック</title>
 
 <style>
+/* ===== Base ===== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: auto; }
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
   background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+
+  /* iOSの勝手な文字拡大を抑える */
+  -webkit-text-size-adjust: 100%;
+
+  /* Safariのvh問題を避ける */
+  min-height: 100dvh;
 }
+
+.app { flex: 1; }
 
 header {
   background: #222;
   color: #fff;
-  padding: 12px;
+  padding: calc(12px + env(safe-area-inset-top)) 12px 12px;
   text-align: center;
   font-size: 16px;
 }
 
-section {
-  padding: 16px;
-  display: none;
-}
+section { padding: 16px; display: none; }
+section.active { display: block; }
 
-section.active {
-  display: block;
-}
+h2 { font-size: 16px; margin-bottom: 12px; }
 
-h2 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
+.label { font-size: 12px; color: #666; margin-bottom: 6px; }
 
 .card {
   background: #fff;
   padding: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
-.card h3 {
-  margin: 0 0 8px;
-  font-size: 15px;
-}
-
-.card p {
-  margin: 4px 0;
-  font-size: 13px;
-}
-
-.label {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 6px;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.app {
-  flex: 1;
-}
+.card h3 { margin: 0 0 8px; font-size: 15px; }
+.card p { margin: 4px 0; font-size: 13px; }
 
 .footer {
-  padding: 12px 0;
+  padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
   text-align: center;
   font-size: 12px;
   color: #666;
   border-top: 1px solid #ddd;
 }
-.table-wrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
 
-table {
+/* ===== Controls (iOS対策含む) ===== */
+button, input, select, textarea {
   width: 100%;
-  border-collapse: collapse;
-  white-space: nowrap;
-}
+  padding: 12px;
+  margin-bottom: 12px;
 
-th, td {
-  padding: 8px;
-  font-size: 13px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-/* iPhone崩れの定番対策セット */
-*, *::before, *::after {
-  box-sizing: border-box;   /* これがないと100%幅+paddingで横はみ出しがち */
-}
-
-body {
-  -webkit-text-size-adjust: 100%; /* 勝手な文字拡大を抑える */
-}
-
-/* iOSの入力ズーム対策：16px以上にする */
-input, select, button {
+  /* iOSの入力ズーム回避（16px未満だとズームする） */
   font-size: 16px;
-}
 
-/* iPhoneのノッチ/ホームバーの余白 */
-header {
-  padding-top: calc(12px + env(safe-area-inset-top));
-}
-.footer {
-  padding-bottom: calc(12px + env(safe-area-inset-bottom));
-}
-
-/* Safariのvh問題を避ける：100%よりmin-height優先 */
-html, body {
-  height: auto;
-}
-body {
-  min-height: 100dvh; /* iOS 16+で安定。古い環境でも致命傷になりにくい */
-}
-
-/* ボタンのiOS標準見た目を抑える（必要なら） */
-button, input, select {
+  /* iOSネイティブ見た目を無効化 */
   -webkit-appearance: none;
   appearance: none;
-  border-radius: 8px;
-}
-button {
-  border: 1px solid #ddd;
-  background: #fff;
-}
-/* iOS Safari の勝手な見た目を完全に殺す */
-button,
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: #fff;
-  color: #000;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
 
-/* タップ時に青くなるのを防ぐ */
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* iOSがリンクっぽく解釈するのを防止 */
-button {
-  text-decoration: none;
-}
-/* ===== iOS Safari 見た目強制リセット（button + select 対応） ===== */
-button,
-input,
-select,
-textarea {
-  -webkit-appearance: none;
-  appearance: none;
   background-color: #fff;
   color: #000;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   box-shadow: none;
   outline: none;
 }
 
-/* select の▼を消す（iOS/Android/PC共通） */
-select {
-  background-image: none;
-}
+/* buttonだけ少し詰める（好みで） */
+button { margin-bottom: 10px; cursor: pointer; }
 
-/* iOSの青ハイライトを無効化 */
-button,
-select {
-  -webkit-tap-highlight-color: transparent;
-}
+/* iOSの青いタップハイライトを消す */
+button, select, a { -webkit-tap-highlight-color: transparent; }
 
-/* iOSが数字をリンク化するのを防止 */
-body {
-  -webkit-text-size-adjust: 100%;
-}
+/* selectの矢印を自前で付ける（iOS/Android/PCで統一） */
 select {
-  position: relative;
   padding-right: 36px;
   background:
     linear-gradient(45deg, transparent 50%, #666 50%),
@@ -221,6 +105,15 @@ select {
   background-repeat: no-repeat;
 }
 
+/* Table */
+.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+th, td {
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 
 </style>
 </head>
@@ -397,6 +290,7 @@ activate(initialPage);
 
 </body>
 </html>
+
 
 
 
