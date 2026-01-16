@@ -243,30 +243,32 @@ th, td {
 
 <!-- 本戻し -->
 <section id="return">
-  <h2>検索</h2>
+  <h2>本戻し（検索）</h2>
 
-  <input id="returnQuery" placeholder="ISBN または 書名を入力" />
+  <input placeholder="ISBN または 書名を入力" />
 
-  <!-- 追加：カメラ（画像からISBN/書名を読み取り想定） -->
-  <input id="returnCamera" type="file" accept="image/*" capture />
+  <!-- カメラ検索（登録と同じUI） -->
+  <input type="file" accept="image/*" capture />
 
-  <!-- 追加：検索ボタン（登録と同じように） -->
-  <button onclick="doReturnSearch()">検索</button>
+  <!-- 検索ボタン（挙動はダミー） -->
+  <button>検索</button>
 
-  <div class="label" id="returnResultLabel" style="display:none;">検索結果</div>
+  <div class="label">検索結果（例）</div>
 
-<div class="label">検索結果（例）</div>
-  <div class="card"> 
-    <h3>サンプル書籍A</h3> 
+  <!-- 常に表示されている検索結果 -->
+  <div class="card">
+    <h3>サンプル書籍A</h3>
     <p><strong>ISBN：</strong>9780001</p>
     <p><strong>著者：</strong>著者A</p>
-    <p><strong>出版社：</strong>出版社A</p> 
-    <p><strong>棚：</strong>棚A</p> <p><strong>POP：</strong>あり</p> 
-    <p><strong>状態：</strong>在庫</p> 
+    <p><strong>出版社：</strong>出版社A</p>
+    <p><strong>棚：</strong>棚A</p>
+    <p><strong>POP：</strong>あり</p>
+    <p><strong>状態：</strong>在庫</p>
   </div>
 
   <button onclick="show('home')">戻る</button>
 </section>
+
 
 </div>
 
@@ -298,6 +300,7 @@ activate(initialPage);
 
 </body>
 </html>
+
 
 
 
