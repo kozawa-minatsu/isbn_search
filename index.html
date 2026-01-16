@@ -173,6 +173,37 @@ a {
 button {
   text-decoration: none;
 }
+/* ===== iOS Safari 見た目強制リセット（button + select 対応） ===== */
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: none;
+  outline: none;
+}
+
+/* select の▼を消す（iOS/Android/PC共通） */
+select {
+  background-image: none;
+}
+
+/* iOSの青ハイライトを無効化 */
+button,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOSが数字をリンク化するのを防止 */
+body {
+  -webkit-text-size-adjust: 100%;
+}
+
 </style>
 </head>
 
@@ -348,6 +379,7 @@ activate(initialPage);
 
 </body>
 </html>
+
 
 
 
