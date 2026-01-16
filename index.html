@@ -4,12 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>蔵書管理システム UI モック</title>
+
 <style>
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
   background: #f5f5f5;
 }
+
 header {
   background: #222;
   color: #fff;
@@ -17,50 +19,60 @@ header {
   text-align: center;
   font-size: 16px;
 }
+
 section {
   padding: 16px;
   display: none;
 }
+
 section.active {
   display: block;
 }
+
 h2 {
   font-size: 16px;
   margin-bottom: 12px;
 }
+
 button {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
   font-size: 14px;
 }
+
 input, select {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
   font-size: 14px;
 }
+
 .card {
   background: #fff;
   padding: 12px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
 .card h3 {
   margin: 0 0 8px;
   font-size: 15px;
 }
+
 .card p {
   margin: 4px 0;
   font-size: 13px;
 }
+
 .label {
   font-size: 12px;
   color: #666;
+  margin-bottom: 6px;
 }
+
 html, body {
   height: 100%;
-  margin: 0;
 }
 
 body {
@@ -79,16 +91,32 @@ body {
   color: #666;
   border-top: 1px solid #ddd;
 }
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+th, td {
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
 </style>
 </head>
 
 <body>
- <div class="app">
+<div class="app">
 <header>蔵書管理システム</header>
 
 <!-- トップ -->
-<section id="home" class="active">
+<section id="home">
   <h2>操作を選択</h2>
   <button onclick="show('single')">1冊登録</button>
   <button onclick="show('bulk')">棚単位登録</button>
@@ -99,28 +127,28 @@ body {
 <!-- 1冊登録 -->
 <section id="single">
   <h2>1冊登録</h2>
+
   <input placeholder="ISBNを入力" />
   <input type="file" accept="image/*" capture />
+
   <select>
     <option>棚A</option>
     <option>棚B</option>
     <option>未定棚</option>
   </select>
-   <div class="field">
-    <label>POP</label>
-    <select>
-      <option>なし</option>
-      <option>あり</option>
-    </select>
-  </div>
 
-  <div class="field">
-    <label>状態</label>
-    <select>
-      <option>在庫</option>
-      <option>廃棄</option>
-    </select>
-  </div>
+  <label class="label">POP</label>
+  <select>
+    <option>なし</option>
+    <option>あり</option>
+  </select>
+
+  <label class="label">状態</label>
+  <select>
+    <option>在庫</option>
+    <option>廃棄</option>
+  </select>
+
   <button>登録</button>
   <button onclick="show('home')">戻る</button>
 </section>
@@ -136,21 +164,19 @@ body {
 
   <input placeholder="ISBNを読み取り" />
   <input type="file" accept="image/*" capture />
-   <div class="field">
-    <label>POP</label>
-    <select>
-      <option>なし</option>
-      <option>あり</option>
-    </select>
-  </div>
 
-  <div class="field">
-    <label>状態</label>
-    <select>
-      <option>在庫</option>
-      <option>廃棄</option>
-    </select>
-  </div>
+  <label class="label">POP</label>
+  <select>
+    <option>なし</option>
+    <option>あり</option>
+  </select>
+
+  <label class="label">状態</label>
+  <select>
+    <option>在庫</option>
+    <option>廃棄</option>
+  </select>
+
   <div class="label">直近の登録結果</div>
   <div class="card">
     <p>9780000000001：登録成功</p>
@@ -158,22 +184,22 @@ body {
   </div>
 
   <button>続けて登録</button>
-  <button onclick="show('home')">終了（戻る）</button>
+  <button onclick="show('home')">終了</button>
 </section>
-
 
 <!-- 蔵書一覧 -->
 <section id="list">
   <h2>蔵書一覧</h2>
 
-  <label>棚を選択</label>
+  <label class="label">棚を選択</label>
   <select>
     <option>棚A</option>
     <option>棚B</option>
     <option>未定棚</option>
   </select>
 
-  <table>
+  <div class="table-wrapper">
+  <table width="100%" cellpadding="6">
     <thead>
       <tr>
         <th>ISBN</th>
@@ -201,45 +227,20 @@ body {
         <td>なし</td>
         <td>在庫</td>
       </tr>
-      <tr>
-        <td>9780000000003</td>
-        <td>ダミー書籍C</td>
-        <td>著者C</td>
-        <td>出版社C</td>
-        <td>あり</td>
-        <td>廃棄</td>
-      </tr>
-      <tr>
-        <td>9780000000004</td>
-        <td>ダミー書籍D</td>
-        <td>著者D</td>
-        <td>出版社D</td>
-        <td>なし</td>
-        <td>在庫</td>
-      </tr>
-      <tr>
-        <td>9780000000005</td>
-        <td>ダミー書籍E</td>
-        <td>著者E</td>
-        <td>出版社E</td>
-        <td>あり</td>
-        <td>在庫</td>
-      </tr>
     </tbody>
   </table>
+  </div>
 
   <button onclick="show('home')">戻る</button>
 </section>
 
-
-<!-- 本戻し（検索） -->
+<!-- 本戻し -->
 <section id="return">
   <h2>本戻し（検索）</h2>
 
   <input placeholder="ISBN または 書名を入力" />
 
   <div class="label">検索結果（例）</div>
-
   <div class="card">
     <h3>サンプル書籍A</h3>
     <p><strong>ISBN：</strong>9780001</p>
@@ -252,16 +253,33 @@ body {
 
   <button onclick="show('home')">戻る</button>
 </section>
+</div>
+
+<footer class="footer">
+  © BOOK HOTEL 神保町
+</footer>
 
 <script>
 function show(id) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  history.pushState({ page: id }, '', '#' + id);
+  activate(id);
 }
+
+function activate(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+}
+
+window.addEventListener('popstate', () => {
+  const page = location.hash.replace('#', '') || 'home';
+  activate(page);
+});
+
+// 初期表示
+const initialPage = location.hash.replace('#', '') || 'home';
+activate(initialPage);
 </script>
- </div>
-  <footer class="footer">
-    © BOOK HOTEL 神保町
-  </footer>
+
 </body>
 </html>
