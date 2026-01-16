@@ -203,6 +203,24 @@ select {
 body {
   -webkit-text-size-adjust: 100%;
 }
+select {
+  position: relative;
+  padding-right: 36px;
+  background:
+    linear-gradient(45deg, transparent 50%, #666 50%),
+    linear-gradient(135deg, #666 50%, transparent 50%),
+    linear-gradient(to right, #ddd, #ddd);
+  background-position:
+    calc(100% - 20px) 50%,
+    calc(100% - 14px) 50%,
+    calc(100% - 36px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px,
+    1px 60%;
+  background-repeat: no-repeat;
+}
+
 
 </style>
 </head>
@@ -379,6 +397,7 @@ activate(initialPage);
 
 </body>
 </html>
+
 
 
 
