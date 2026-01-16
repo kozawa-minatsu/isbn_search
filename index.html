@@ -148,6 +148,29 @@ button {
   border: 1px solid #ddd;
   background: #fff;
 }
+/* iOS Safari の勝手な見た目を完全に殺す */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* タップ時に青くなるのを防ぐ */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* iOSがリンクっぽく解釈するのを防止 */
+button {
+  text-decoration: none;
+}
 </style>
 </head>
 
@@ -323,4 +346,5 @@ activate(initialPage);
 
 </body>
 </html>
+
 
