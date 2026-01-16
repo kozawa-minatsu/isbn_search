@@ -108,6 +108,46 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
+/* iPhone崩れの定番対策セット */
+*, *::before, *::after {
+  box-sizing: border-box;   /* これがないと100%幅+paddingで横はみ出しがち */
+}
+
+body {
+  -webkit-text-size-adjust: 100%; /* 勝手な文字拡大を抑える */
+}
+
+/* iOSの入力ズーム対策：16px以上にする */
+input, select, button {
+  font-size: 16px;
+}
+
+/* iPhoneのノッチ/ホームバーの余白 */
+header {
+  padding-top: calc(12px + env(safe-area-inset-top));
+}
+.footer {
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+/* Safariのvh問題を避ける：100%よりmin-height優先 */
+html, body {
+  height: auto;
+}
+body {
+  min-height: 100dvh; /* iOS 16+で安定。古い環境でも致命傷になりにくい */
+}
+
+/* ボタンのiOS標準見た目を抑える（必要なら） */
+button, input, select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 8px;
+}
+button {
+  border: 1px solid #ddd;
+  background: #fff;
+}
 </style>
 </head>
 
@@ -283,3 +323,4 @@ activate(initialPage);
 
 </body>
 </html>
+
